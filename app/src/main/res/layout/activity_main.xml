@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/Orange"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="log in"
             android:textColor="#f3f3f3"
-            android:background="@color/colorSuccess"
+            android:background="@color/Ungu"
             android:layout_below="@id/et_password"/>
     </RelativeLayout>
 </LinearLayout>
