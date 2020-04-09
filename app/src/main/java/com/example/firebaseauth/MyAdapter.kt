@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.firebaseauth.R
 
 class MyAdapter (var mCtx: Context, var resources:Int, var items:List<Model>):
     ArrayAdapter<Model>(mCtx, resources, items) {
