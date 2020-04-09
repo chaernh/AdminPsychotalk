@@ -12,90 +12,93 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
-
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
-    private var emailTV: TextInputEditText? = null
-    private  var passwordTV:TextInputEditText? = null
+    private lateinit var auth: FirebaseAuth
 
-    private var layoutEmail:TextInputLayout?=null
-    private var layoutPassword:TextInputLayout?=null
-
-    private var progressBar: ProgressBar? = null
-
-    private var mAuth: FirebaseAuth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mAuth = FirebaseAuth.getInstance();
 
+        auth = FirebaseAuth.getInstance()
+//        val btnLogin = findViewById(R.id.bt_login) as Button
+//        btnLogin.setOnClickListener() {
+//            val email = et_email.text.toString()
+//            val password = et_password.text.toString()
+//            if (email.isEmpty() || password.isEmpty()) {
+//                Toast.makeText(this, "Harap masukkan email dan password!", Toast.LENGTH_SHORT).show()
+//                return@setOnClickListener
+//            }
+//            FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password)
+//                .addOnCompleteListener{
+//
+//                    if (!it.isSuccessful){ return@addOnCompleteListener
+//                        val intent = Intent (this, Login::class.java)
+//                        startActivity(intent)
+//                    }
+//                    else
+//                        Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show()
+//                        val intent = Intent (this, MainActivity::class.java)
+//                        startActivity(intent)
+//                }
+//                .addOnFailureListener{
+//                    Log.d("Main", "Failed Login: ${it.message}")
+//                    Toast.makeText(this, "Email atau password salah!", Toast.LENGTH_SHORT).show()
+//                }
+    }
+    fun loginExec(email:String, password:String){
 
-
-        initializeUI();
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    val user = auth.currentUser
+//                    updateUI(user)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+//                    updateUI(null)
+                }
+            }
     }
 
-    override fun onStart() {
-        super.onStart()
-        if(mAuth?.currentUser != null){
-
-        }
-    }
-
-    private fun initializeUI() {
-        emailTV = findViewById(R.id.email);
-        passwordTV = findViewById(R.id.password);
-
-        layoutEmail = findViewById(R.id.layoutEmail)
-        layoutPassword = findViewById(R.id.layoutPassword)
-        progressBar = findViewById(R.id.progressBar);
-
-    }
-
-    fun Login(view: View) {
-        progressBar!!.visibility = View.VISIBLE
-
-        val email: String
-        val password: String
-        email = emailTV!!.text.toString()
-        password = passwordTV!!.text.toString()
+    fun btnLogin(view: View) {
+        var email :String = et_email.text.toString()
+        var password :String = et_password.text.toString()
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(applicationContext, "Please enter email...", Toast.LENGTH_LONG)
+            Toast.makeText(applicationContext, "Silahkan masukkan email!", Toast.LENGTH_LONG)
                 .show()
             return
         }
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(applicationContext, "Please enter password!", Toast.LENGTH_LONG)
+            Toast.makeText(applicationContext, "Silahkan masukkan password", Toast.LENGTH_LONG)
                 .show()
             return
         }
-        mAuth!!.signInWithEmailAndPassword(email, password)
+        auth!!.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(
                         applicationContext,
-                        "Login successful!",
+                        "Login sukses!",
                         Toast.LENGTH_LONG
                     ).show()
-                    progressBar!!.visibility = View.GONE
                     val intent =
                         Intent(this, Dashboard::class.java)
                     startActivity(intent)
                 } else {
                     Toast.makeText(
                         applicationContext,
-                        "Login failed! Please try again later",
+                        "Login gagal! Silahkan coba lagi...",
                         Toast.LENGTH_LONG
                     ).show()
-                    Log.e("MainActivity", "Failed Login"+ task.exception?.message);
-                    progressBar!!.visibility = View.GONE
+                    Log.e("Login", "Failed Login"+ task.exception?.message);
                 }
             }
-    }
-    fun Register(view: View) {
-        var intent = Intent(this,Registration::class.java)
-        startActivity(intent)
     }
 }
