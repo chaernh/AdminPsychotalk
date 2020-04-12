@@ -1,42 +1,116 @@
 {
   "project_info": {
-    "project_number": "744221923016",
-    "firebase_url": "https://fir-auth-f3ff6.firebaseio.com",
-    "project_id": "fir-auth-f3ff6",
-    "storage_bucket": "fir-auth-f3ff6.appspot.com"
+    "project_number": "643517709667",
+    "firebase_url": "https://adminpsychotalk.firebaseio.com",
+    "project_id": "adminpsychotalk",
+    "storage_bucket": "adminpsychotalk.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:744221923016:android:c49ce31adeedc5cf5ff7fd",
+        "mobilesdk_app_id": "1:643517709667:android:1d68a5eb9a6f6cbc69a756",
         "android_client_info": {
-          "package_name": "com.example.firebaseauth"
+          "package_name": "com.chaer.adminpsychotalk"
         }
       },
       "oauth_client": [
         {
-          "client_id": "744221923016-49tvdq3efehbvjhpb1b8dgm9029v3ntv.apps.googleusercontent.com",
+          "client_id": "643517709667-p9ua1tnt0is191gujql2g8sqormi9j4r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.firebaseauth",
-            "certificate_hash": "3aae70568e08d06ca2302b24d84f41ab6e9cfc5f"
+            "package_name": "com.chaer.adminpsychotalk",
+            "certificate_hash": "309916d39d6ceb3a71cf5f28e68283d8253e5e92"
           }
         },
         {
-          "client_id": "744221923016-1ef1p98r12mhmi43ie2aeb32ft3ifhf9.apps.googleusercontent.com",
+          "client_id": "643517709667-3nttutrj5vul9lb96tg2qpmebetbh0na.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC0zGbIxQmXi15TzoNiud93ZZsDMVmUm3I"
+          "current_key": "AIzaSyAezbw4_4WDEt9nP11C2aIJGidfrvV-5vY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "744221923016-1ef1p98r12mhmi43ie2aeb32ft3ifhf9.apps.googleusercontent.com",
+              "client_id": "643517709667-3nttutrj5vul9lb96tg2qpmebetbh0na.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643517709667:android:0f7ddebbd7abb3d469a756",
+        "android_client_info": {
+          "package_name": "com.chaer.admpsycho"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "643517709667-g7u9fnqbl3rrf46egv3er162alnucr09.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chaer.admpsycho",
+            "certificate_hash": "309916d39d6ceb3a71cf5f28e68283d8253e5e92"
+          }
+        },
+        {
+          "client_id": "643517709667-3nttutrj5vul9lb96tg2qpmebetbh0na.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAezbw4_4WDEt9nP11C2aIJGidfrvV-5vY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "643517709667-3nttutrj5vul9lb96tg2qpmebetbh0na.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643517709667:android:3e2885b9fd6765c169a756",
+        "android_client_info": {
+          "package_name": "com.example.firebaseauth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "643517709667-p3algu1q92e7de1f3fkcvmqsvuahkbsj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebaseauth",
+            "certificate_hash": "309916d39d6ceb3a71cf5f28e68283d8253e5e92"
+          }
+        },
+        {
+          "client_id": "643517709667-3nttutrj5vul9lb96tg2qpmebetbh0na.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAezbw4_4WDEt9nP11C2aIJGidfrvV-5vY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "643517709667-3nttutrj5vul9lb96tg2qpmebetbh0na.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
