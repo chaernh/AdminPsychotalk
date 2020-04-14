@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             et_password.transformationMethod = PasswordTransformationMethod.getInstance()
             visibility.setImageResource((R.drawable.ic_show_password))
         }
-        et_password.setSelection(et_password.text.toString().length)
+        6
     }
 
     fun loginExec(email:String, password:String){
