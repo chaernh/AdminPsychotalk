@@ -15,9 +15,11 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.chaer.adminpsychotalk.Model
 import com.chaer.adminpsychotalk.MyAdapter
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    private lateinit var auth: FirebaseAuth
 
     lateinit var toolbar: Toolbar
     lateinit var drawerLayout: DrawerLayout
@@ -80,6 +82,7 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             }
             R.id.nav_logout -> {
 //                Toast.makeText(this, "Sign out clicked", Toast.LENGTH_SHORT).show()
+                auth.signOut()
                 val intent =
                     Intent(this, MainActivity::class.java)
                 startActivity(intent)

@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
+                    finish()
                     val user = auth.currentUser
 //                    updateUI(user)
                 } else {
