@@ -1,5 +1,6 @@
 package com.example.firebaseauth
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -8,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -82,13 +84,31 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             }
             R.id.nav_logout -> {
 //                Toast.makeText(this, "Sign out clicked", Toast.LENGTH_SHORT).show()
-                auth.signOut()
+                FirebaseAuth.getInstance().signOut()
                 val intent =
                     Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onBackPressed() {
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setMessage("Do you want to close this app?")
+            .setCancelable(false)
+            .setPositiveButton("Yes", DialogInterface.OnClickListener {
+                    dialog, id ->  FirebaseAuth.getInstance().signOut()
+                                    finish()
+            })
+            .setNegativeButton("No", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+
+        val alert = dialogBuilder.create()
+        alert.show()
     }
 }

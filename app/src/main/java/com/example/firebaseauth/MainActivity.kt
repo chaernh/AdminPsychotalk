@@ -2,9 +2,13 @@ package com.example.firebaseauth
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.text.TextUtils
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.View
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -13,12 +17,13 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_registration.*
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-
+    private var mIsShowPass = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -48,14 +53,32 @@ class MainActivity : AppCompatActivity() {
 //                    Log.d("Main", "Failed Login: ${it.message}")
 //                    Toast.makeText(this, "Email atau password salah!", Toast.LENGTH_SHORT).show()
 //                }
+
+        visibility.setOnClickListener {
+            mIsShowPass = ! mIsShowPass
+            showPassword(mIsShowPass)
+        }
+        showPassword(mIsShowPass)
     }
+
+    private fun showPassword(isShow: Boolean){
+        if (isShow) {
+            et_password.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            visibility.setImageResource((R.drawable.ic_hide_password))
+        }
+        else{
+            et_password.transformationMethod = PasswordTransformationMethod.getInstance()
+            visibility.setImageResource((R.drawable.ic_show_password))
+        }
+        et_password.setSelection(et_password.text.toString().length)
+    }
+
     fun loginExec(email:String, password:String){
 
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    finish()
                     val user = auth.currentUser
 //                    updateUI(user)
                 } else {
@@ -92,6 +115,7 @@ class MainActivity : AppCompatActivity() {
                     val intent =
                         Intent(this, Dashboard::class.java)
                     startActivity(intent)
+                    finish()
                 } else {
                     Toast.makeText(
                         applicationContext,

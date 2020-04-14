@@ -27,27 +27,43 @@
             android:drawablePadding="20dp"
             android:layout_marginBottom="5dp"
             android:layout_centerVertical="true"/>
-        <EditText
-            android:backgroundTint="#fff"
-            android:textColorHint="#fff"
+        <LinearLayout
             android:layout_below="@id/et_email"
-            android:id="@+id/et_password"
+            android:weightSum="6"
+            android:orientation="horizontal"
+            android:id="@+id/lin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_password"
-            android:drawablePadding="20dp"
-            android:hint="Password"
-            android:textColor="#f3f3f3"
-            android:layout_marginBottom="20dp"
-            android:layout_centerVertical="true"/>
+            android:layout_height="wrap_content">
+            <EditText
+                android:backgroundTint="#fff"
+                android:textColorHint="#fff"
+                android:layout_below="@id/et_email"
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_password"
+                android:drawablePadding="20dp"
+                android:hint="Password"
+                android:textColor="#f3f3f3"
+                android:layout_centerVertical="true"/>
+            <ImageView
+                android:layout_weight="5"
+                android:id="@+id/visibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_show_password"/>
+        </LinearLayout>
         <Button
             android:onClick="btnLogin"
             android:id="@+id/bt_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="log in"
             android:textColor="#f3f3f3"
             android:background="@color/Ungu"
-            android:layout_below="@id/et_password"/>
+            android:layout_below="@id/lin"/>
     </RelativeLayout>
 </LinearLayout>
