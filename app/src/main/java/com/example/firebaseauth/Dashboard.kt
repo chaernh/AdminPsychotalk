@@ -80,15 +80,18 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                 Toast.makeText(this, "Update Profile clicked", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_change_password -> {
-                Toast.makeText(this, "Change Password clicked", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "Change Password clicked", Toast.LENGTH_SHORT).show()
+                val intent =
+                    Intent(this, ChangePassword::class.java)
+                startActivity(intent)
             }
             R.id.nav_logout -> {
 //                Toast.makeText(this, "Sign out clicked", Toast.LENGTH_SHORT).show()
                 FirebaseAuth.getInstance().signOut()
+                finish()
                 val intent =
                     Intent(this, MainActivity::class.java)
                 startActivity(intent)
-                finish()
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
