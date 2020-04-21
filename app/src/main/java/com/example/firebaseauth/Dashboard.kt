@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -62,6 +63,12 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
+
+        val user = FirebaseAuth.getInstance().currentUser
+        val email = user?.email
+        val headerView = navView.getHeaderView(0)
+        val textview : TextView = headerView.findViewById<TextView>(R.id.tv_email)
+        textview.setText(email)
 
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar, 0, 0

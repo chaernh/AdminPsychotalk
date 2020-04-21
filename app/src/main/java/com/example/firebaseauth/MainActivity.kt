@@ -107,9 +107,11 @@ class MainActivity : AppCompatActivity() {
         auth!!.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    val user = FirebaseAuth.getInstance().currentUser
+                    val email = user?.email
+                    finish() 
                     Toast.makeText(
-                        applicationContext,
-                        "Login sukses!",
+                        applicationContext, "Welcome, "+email+" !",
                         Toast.LENGTH_LONG
                     ).show()
                     val intent =

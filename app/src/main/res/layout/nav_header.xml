@@ -18,16 +18,11 @@
         android:layout_marginBottom="15dp"/>
 
     <TextView
+        android:id="@+id/tv_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Admin Ganteng"
+        android:text="9999"
         android:textColor="#FFFFFF"
         android:textStyle="bold"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="adminganteng123"
-        android:textColor="#FFFFFF"/>
 
 </LinearLayout>
