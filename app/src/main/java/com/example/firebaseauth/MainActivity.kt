@@ -1,5 +1,6 @@
 package com.example.firebaseauth
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
@@ -12,6 +13,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -70,24 +72,6 @@ class MainActivity : AppCompatActivity() {
             et_password.transformationMethod = PasswordTransformationMethod.getInstance()
             visibility.setImageResource((R.drawable.ic_show_password))
         }
-        6
-    }
-
-    fun loginExec(email:String, password:String){
-
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val user = auth.currentUser
-//                    updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
-//                    updateUI(null)
-                }
-            }
     }
 
     fun btnLogin(view: View) {
@@ -104,8 +88,9 @@ class MainActivity : AppCompatActivity() {
                 .show()
             return
         }
-        auth!!.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
+        //        auth!!.signInWithEmailAndPassword(email, password)
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val user = FirebaseAuth.getInstance().currentUser
                     val email = user?.email
@@ -121,11 +106,11 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(
                         applicationContext,
-                        "Login gagal! Silahkan coba lagi...",
+                        "Login failed! Please try again!",
                         Toast.LENGTH_LONG
                     ).show()
                     Log.e("Login", "Failed Login"+ task.exception?.message);
                 }
             }
-    }
+        }
 }
