@@ -2,6 +2,7 @@
 <LinearLayout
     android:id="@+id/box"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Orange"
@@ -27,14 +28,17 @@
             android:drawablePadding="20dp"
             android:layout_marginBottom="5dp"
             android:layout_centerVertical="true"/>
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_below="@id/et_email"
-            android:weightSum="6"
-            android:orientation="horizontal"
-            android:id="@+id/lin"
+            android:id="@+id/layoutPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
+            android:layout_height="wrap_content"
+            android:textColorHint="#fff"
+            app:passwordToggleTint="#fff"
+            app:passwordToggleEnabled="true"
+            app:errorEnabled="true"
+            >
+            <com.google.android.material.textfield.TextInputEditText
                 android:backgroundTint="#fff"
                 android:textColorHint="#fff"
                 android:layout_below="@id/et_email"
@@ -43,19 +47,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_password"
+                android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="20dp"
                 android:hint="Password"
                 android:textColor="#f3f3f3"
                 android:layout_centerVertical="true"/>
-            <ImageView
-                android:layout_weight="5"
-                android:id="@+id/visibility"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_show_password"/>
-        </LinearLayout>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:onClick="btnLogin"
             android:id="@+id/bt_login"
@@ -65,6 +64,6 @@
             android:text="log in"
             android:textColor="#f3f3f3"
             android:background="@color/Ungu"
-            android:layout_below="@id/lin"/>
+            android:layout_below="@id/layoutPassword"/>
     </RelativeLayout>
 </LinearLayout>

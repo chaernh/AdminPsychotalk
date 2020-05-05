@@ -30,6 +30,7 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+        auth = FirebaseAuth.getInstance()
 
         var listView = findViewById<ListView>(R.id.listView)
         var list = mutableListOf<Model>()
@@ -47,6 +48,8 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             }
             else if (position == 1){
                 Toast.makeText(this@Dashboard, "You click Konsultan!", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, ConsultantActivity::class.java)
+                startActivity(intent)
             }
             else if (position == 2){
                 Toast.makeText(this@Dashboard, "You click Blog!", Toast.LENGTH_LONG).show()
@@ -103,6 +106,12 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        println(currentUser?.uid)
     }
 
     override fun onBackPressed() {

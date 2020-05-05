@@ -11,8 +11,9 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.firebaseauth.Model.User
+import com.google.firebase.FirebaseApp
+import com.google.firebase.FirebaseOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -25,11 +26,23 @@ class Registration : AppCompatActivity() {
     private var regBtn: Button? = null
     private var progressBar: ProgressBar? = null
 
-    private var mAuth: FirebaseAuth? = null
+    private var mAuth1: FirebaseAuth? = null
+    private var mAuth2: FirebaseAuth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
-        mAuth = FirebaseAuth.getInstance();
+        mAuth1 = FirebaseAuth.getInstance();
+
+        val firebaseOptions = FirebaseOptions.Builder()
+            .setDatabaseUrl("https://psikotalk-86cd2.firebaseio.com")
+            .setApiKey("AIzaSyDFzh3eB23KRhQ18bs08HFRyozuSSMVu-g")
+            .setApplicationId("psikotalk-86cd2").build()
+        mAuth2 = try {
+            val myApp = FirebaseApp.initializeApp(applicationContext, firebaseOptions, "AnyAppName")
+            FirebaseAuth.getInstance(myApp)
+        } catch (e: IllegalStateException) {
+            FirebaseAuth.getInstance(FirebaseApp.getInstance("AnyAppName"))
+        }
 
         initializeUI();
     }
@@ -59,21 +72,20 @@ class Registration : AppCompatActivity() {
             Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
             return;
         }
-        mAuth!!.createUserWithEmailAndPassword(email, password)
+        mAuth2!!.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     var user = User(name,email,phone)
-
                     FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().currentUser!!.uid).set(user)
-
                     Toast.makeText(
                         applicationContext,
                         "Registration successful!",
                         Toast.LENGTH_LONG
                     ).show()
                     progressBar!!.visibility = View.GONE
+                    mAuth2!!.signOut();
                     val intent =
-                        Intent(this, MainActivity::class.java)
+                        Intent(this, Dashboard::class.java)
                     startActivity(intent)
                 } else {
                     Toast.makeText(

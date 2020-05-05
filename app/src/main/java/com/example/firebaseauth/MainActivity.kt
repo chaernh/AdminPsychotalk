@@ -55,24 +55,9 @@ class MainActivity : AppCompatActivity() {
 //                    Log.d("Main", "Failed Login: ${it.message}")
 //                    Toast.makeText(this, "Email atau password salah!", Toast.LENGTH_SHORT).show()
 //                }
-
-        visibility.setOnClickListener {
-            mIsShowPass = ! mIsShowPass
-            showPassword(mIsShowPass)
-        }
-        showPassword(mIsShowPass)
     }
 
-    private fun showPassword(isShow: Boolean){
-        if (isShow) {
-            et_password.transformationMethod = HideReturnsTransformationMethod.getInstance()
-            visibility.setImageResource((R.drawable.ic_hide_password))
-        }
-        else{
-            et_password.transformationMethod = PasswordTransformationMethod.getInstance()
-            visibility.setImageResource((R.drawable.ic_show_password))
-        }
-    }
+
 
     fun btnLogin(view: View) {
         var email :String = et_email.text.toString()
