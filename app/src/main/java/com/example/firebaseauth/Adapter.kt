@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 
-class Adapter(val mCtx: Context, val layoutResId: Int, val list: List<Users> )
+class Adapter(val mCtx: Context, val layoutResId: Int, val list: ArrayList<Users> )
     : ArrayAdapter<Users>(mCtx,layoutResId,list){
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {

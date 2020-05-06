@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.firebaseauth.Model.User
 import com.google.firebase.FirebaseApp
@@ -25,7 +22,7 @@ class Registration : AppCompatActivity() {
     private  var phoneTv:EditText? = null
     private var regBtn: Button? = null
     private var progressBar: ProgressBar? = null
-
+    private var spinner: Spinner? = null
     private var mAuth1: FirebaseAuth? = null
     private var mAuth2: FirebaseAuth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +42,11 @@ class Registration : AppCompatActivity() {
         }
 
         initializeUI();
+
+        ArrayAdapter.createFromResource(this,R.array.role_array,android.R.layout.simple_spinner_item).also {
+                arrayAdapter ->  arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner?.adapter = arrayAdapter
+        }
     }
 
     private fun initializeUI() {
@@ -54,6 +56,7 @@ class Registration : AppCompatActivity() {
         nameTv = findViewById(R.id.nama)
         phoneTv = findViewById(R.id.phone)
         progressBar = findViewById(R.id.progressBar);
+        spinner = findViewById(R.id.spinnerRole);
     }
 
     fun register(view: View) {
@@ -75,7 +78,7 @@ class Registration : AppCompatActivity() {
         mAuth2!!.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    var user = User(name,email,phone)
+                    var user = User(name,email,phone,spinner?.selectedItem.toString())
                     FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().currentUser!!.uid).set(user)
                     Toast.makeText(
                         applicationContext,

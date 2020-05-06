@@ -21,8 +21,8 @@ class Blog : AppCompatActivity() {
         list = mutableListOf()
         listView = findViewById(R.id.listView)
 
-        val adapter = Adapter(this@Blog,R.layout.users,list)
-        listView.adapter = adapter
+//        val adapter = Adapter(this@Blog,R.layout.users,list)
+//        listView.adapter = adapter
 
         btnSave.setOnClickListener {
             savedata()
@@ -40,8 +40,8 @@ class Blog : AppCompatActivity() {
                         val user = h.getValue(Users::class.java)
                         list.add(user!!)
                     }
-                    val adapter = Adapter(applicationContext,R.layout.users,list)
-                    listView.adapter = adapter
+//                    val adapter = Adapter(applicationContext,R.layout.users,list)
+//                    listView.adapter = adapter
                 }
             }
         })

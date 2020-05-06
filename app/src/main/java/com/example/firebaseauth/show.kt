@@ -29,8 +29,8 @@ class show : AppCompatActivity() {
                         val user = h.getValue(Users::class.java)
                         list.add(user!!)
                     }
-                    val adapter = Adapter(applicationContext,R.layout.users,list)
-                    listView.adapter = adapter
+//                    val adapter = Adapter(applicationContext,R.layout.users,list)
+//                    listView.adapter = adapter
                 }
             }
         })
