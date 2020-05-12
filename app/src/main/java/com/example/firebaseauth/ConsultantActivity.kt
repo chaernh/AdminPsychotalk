@@ -44,6 +44,7 @@ class ConsultantActivity : AppCompatActivity() {
 
     fun btnTambah(view: View) {
         val intent = Intent(this, Registration::class.java)
+        intent.putExtra("role","KONSULTAN")
         startActivity(intent)
     }
 }

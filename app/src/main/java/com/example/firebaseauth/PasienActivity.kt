@@ -41,6 +41,7 @@ class PasienActivity : AppCompatActivity() {
 
     fun btnTambah(view: View) {
         val intent = Intent(this, Registration::class.java)
+        intent.putExtra("role","PASIEN")
         startActivity(intent)
     }
 }

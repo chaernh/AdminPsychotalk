@@ -45,6 +45,8 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         listView.setOnItemClickListener { parent: AdapterView<*>, view: View, position:Int, id: Long ->
             if (position == 0){
                 Toast.makeText(this@Dashboard, "You click Pasien!", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, PasienActivity::class.java)
+                startActivity(intent)
             }
             else if (position == 1){
                 Toast.makeText(this@Dashboard, "You click Konsultan!", Toast.LENGTH_LONG).show()

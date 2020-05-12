@@ -25,6 +25,7 @@ class Registration : AppCompatActivity() {
     private var spinner: Spinner? = null
     private var mAuth1: FirebaseAuth? = null
     private var mAuth2: FirebaseAuth? = null
+    lateinit var arrayAdapter: ArrayAdapter<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
@@ -41,11 +42,11 @@ class Registration : AppCompatActivity() {
             FirebaseAuth.getInstance(FirebaseApp.getInstance("AnyAppName"))
         }
         initializeUI();
+        arrayAdapter = ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,resources.getStringArray(R.array.role_array))
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner!!.adapter = arrayAdapter
+        spinner!!.setSelection(arrayAdapter.getPosition(intent.extras?.getString("role")))
 
-        ArrayAdapter.createFromResource(this,R.array.role_array,android.R.layout.simple_spinner_item).also {
-                arrayAdapter ->  arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spinner?.adapter = arrayAdapter
-        }
     }
 
     private fun initializeUI() {
@@ -77,7 +78,12 @@ class Registration : AppCompatActivity() {
         mAuth2!!.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    var user = User(name,email,phone,spinner?.selectedItem.toString(),mAuth2!!.currentUser!!.uid)
+                     lateinit var user:User
+                    if(spinner!!.selectedItem.toString().equals("PASIEN")){
+                        user = User(name,email,phone,spinner?.selectedItem.toString(),mAuth2!!.currentUser!!.uid,"ACTIVE","","")
+                    }else{
+                        user = User(name,email,phone,spinner?.selectedItem.toString(),mAuth2!!.currentUser!!.uid,"ACTIVE")
+                    }
                     FirebaseFirestore.getInstance().collection("Users").document(mAuth2!!.currentUser!!.uid).set(user)
                     Toast.makeText(
                         applicationContext,
