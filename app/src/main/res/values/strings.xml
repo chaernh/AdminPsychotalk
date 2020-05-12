@@ -5,4 +5,9 @@
         <item>KONSULTAN</item>
         <item>ADMIN</item>
     </string-array>
+
+    <string-array name="active_array">
+        <item>ACTIVE</item>
+        <item>NON-ACTIVE</item>
+    </string-array>
 </resources>

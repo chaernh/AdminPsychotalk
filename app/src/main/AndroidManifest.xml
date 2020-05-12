@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ConsultantActivity"></activity>
+        <activity android:name=".DetailUserActivity"></activity>
+        <activity android:name=".PasienActivity" />
+        <activity android:name=".ConsultantActivity" />
         <activity android:name=".UpdateProfile" />
         <activity android:name=".ChangePassword" />
         <activity android:name=".Dashboard" />

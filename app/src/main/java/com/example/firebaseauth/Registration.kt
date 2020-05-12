@@ -40,7 +40,6 @@ class Registration : AppCompatActivity() {
         } catch (e: IllegalStateException) {
             FirebaseAuth.getInstance(FirebaseApp.getInstance("AnyAppName"))
         }
-
         initializeUI();
 
         ArrayAdapter.createFromResource(this,R.array.role_array,android.R.layout.simple_spinner_item).also {
@@ -78,8 +77,8 @@ class Registration : AppCompatActivity() {
         mAuth2!!.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    var user = User(name,email,phone,spinner?.selectedItem.toString())
-                    FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().currentUser!!.uid).set(user)
+                    var user = User(name,email,phone,spinner?.selectedItem.toString(),mAuth2!!.currentUser!!.uid)
+                    FirebaseFirestore.getInstance().collection("Users").document(mAuth2!!.currentUser!!.uid).set(user)
                     Toast.makeText(
                         applicationContext,
                         "Registration successful!",

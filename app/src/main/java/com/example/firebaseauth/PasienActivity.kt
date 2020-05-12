@@ -1,26 +1,23 @@
 package com.example.firebaseauth
 
-import android.annotation.SuppressLint
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.firebaseauth.Model.User
 import com.google.firebase.firestore.FirebaseFirestore
 
-
-class ConsultantActivity : AppCompatActivity() {
+class PasienActivity : AppCompatActivity() {
     var userList = ArrayList<User>()
-    var db:FirebaseFirestore? = FirebaseFirestore.getInstance()
-    @SuppressLint("WrongConstant")
+    var db: FirebaseFirestore? = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_consultant)
-        var listview:ListView = findViewById(R.id.listConsultant)
-        db!!.collection("Users").whereEqualTo("role","KONSULTAN")
+        setContentView(R.layout.activity_pasien)
+        var listview: ListView = findViewById(R.id.listConsultant)
+        db!!.collection("Users").whereEqualTo("role","PASIEN")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

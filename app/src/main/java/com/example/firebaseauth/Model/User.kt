@@ -5,12 +5,15 @@ class User {
     public lateinit var email:String
     public lateinit var phone:String
     public lateinit var role:String
+    public lateinit var uid:String
+    public lateinit var active:String
 
-    constructor(name: String, email: String, phone: String,role:String) {
+    constructor(name: String, email: String, phone: String,role:String,uid:String) {
         this.name = name
         this.email = email
         this.phone = phone
         this.role = role;
+        this.uid = uid;
     }
 
     constructor(name: String, email: String, phone: String) {
@@ -21,5 +24,20 @@ class User {
 
 
     constructor()
+    constructor(
+        name: String,
+        email: String,
+        phone: String,
+        role: String,
+        uid: String,
+        active: String
+    ) {
+        this.name = name
+        this.email = email
+        this.phone = phone
+        this.role = role
+        this.uid = uid
+        this.active = active
+    }
 
 }
