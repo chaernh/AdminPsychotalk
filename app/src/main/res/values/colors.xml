@@ -7,6 +7,8 @@
     <color name="Orange">#FEBE67</color>
     <color name="Ungu">#9868AC</color>
     <color name="Putih">#fff</color>
+    <color name="green">#00FF00</color>
+    <color name="red">#B7FF0011</color>
 
 
 </resources>
