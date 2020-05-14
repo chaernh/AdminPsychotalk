@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.firebaseauth.Model.User
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 
 
 class DetailUserActivity : AppCompatActivity() {
@@ -22,6 +23,7 @@ class DetailUserActivity : AppCompatActivity() {
     lateinit var uid:String
     lateinit var roleAdapter: ArrayAdapter<String>
     lateinit var activeAdapter: ArrayAdapter<String>
+    lateinit var user:User
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_user)
@@ -69,13 +71,22 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     fun btnSave(view: View) {
+
         if (emailTV?.text!=null && emailTV?.text!=null && nameTv?.text!=null && phoneTv?.text!=null){
-            var user = User(nameTv?.text.toString(),emailTV?.text.toString(),phoneTv?.text.toString(),spinnerRole.selectedItem.toString(),uid,spinner.selectedItem.toString())
-            FirebaseFirestore.getInstance().collection("Users").document(uid).set(user).addOnSuccessListener { Toast.makeText(this,"Save Success",Toast.LENGTH_LONG).show()
+            val email: String
+            val password: String
+            email = emailTV!!.text.toString()
+            val name = nameTv?.text.toString()
+            val phone = phoneTv?.text.toString()
+            if(spinner!!.selectedItem.toString().equals("PASIEN")){
+                user = User(name,email,phone,spinnerRole?.selectedItem.toString(),uid,spinner?.selectedItem.toString(),"","")
+            }else{
+                user = User(name,email,phone,spinner?.selectedItem.toString(),uid,spinner?.selectedItem.toString())
+            }
+            FirebaseFirestore.getInstance().collection("Users").document(uid).set(user, SetOptions.merge()).addOnSuccessListener { Toast.makeText(this,"Save Success",Toast.LENGTH_LONG).show()
                 val intent = Intent(this,Dashboard::class.java)
                 startActivity(intent)
-            }
-                .addOnFailureListener { e -> Log.w("Error save user/id", "Error writing document", e) }
+            }.addOnFailureListener { e -> Log.w("Error save user/id", "Error writing document", e) }
         }
     }
 }

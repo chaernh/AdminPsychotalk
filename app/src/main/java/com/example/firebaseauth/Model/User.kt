@@ -7,8 +7,8 @@ class User {
     public lateinit var role:String
     public lateinit var uid:String
     public lateinit var active:String
-    public lateinit var height:String
-    public lateinit var weight:String
+    public  var height:String = ""
+    public  var weight:String = ""
 
     constructor(name: String, email: String, phone: String,role:String,uid:String) {
         this.name = name
