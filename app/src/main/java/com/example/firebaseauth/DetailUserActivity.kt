@@ -78,12 +78,8 @@ class DetailUserActivity : AppCompatActivity() {
             email = emailTV!!.text.toString()
             val name = nameTv?.text.toString()
             val phone = phoneTv?.text.toString()
-            if(spinner!!.selectedItem.toString().equals("PASIEN")){
-                user = User(name,email,phone,spinnerRole?.selectedItem.toString(),uid,spinner?.selectedItem.toString(),"","")
-            }else{
-                user = User(name,email,phone,spinner?.selectedItem.toString(),uid,spinner?.selectedItem.toString())
-            }
-            FirebaseFirestore.getInstance().collection("Users").document(uid).set(user, SetOptions.merge()).addOnSuccessListener { Toast.makeText(this,"Save Success",Toast.LENGTH_LONG).show()
+
+            FirebaseFirestore.getInstance().collection("Users").document(uid).update(mapOf("name" to name,"email" to email,"phone" to phone,"role" to spinnerRole.selectedItem.toString(),"active" to spinner.selectedItem.toString())).addOnSuccessListener { Toast.makeText(this,"Save Success",Toast.LENGTH_LONG).show()
                 val intent = Intent(this,Dashboard::class.java)
                 startActivity(intent)
             }.addOnFailureListener { e -> Log.w("Error save user/id", "Error writing document", e) }
